@@ -67078,7 +67078,7 @@ case 2:p=o[n]
 C.b.v(o,p)
 q.aT()
 s=4
-return P.X(G.apz(u.u+H.b(p.a)+".json"),$async$uI)
+return P.X(G.apz(u.u+H.b(p.a)+".json?auth="+H.b(q.b)),$async$uI)
 case 4:if(c.b>=400){C.b.l7(o,n,p)
 q.aT()
 throw H.a(new E.vA(C.c.I("Ocorreu um erro ao deletar o produto ",p.b)))}case 3:return P.U(null,r)}})

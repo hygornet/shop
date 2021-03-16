@@ -46,8 +46,8 @@ const RESOURCES = {
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"index.html": "dc60679dde46ef541180d15696acabb9",
-"/": "567db35d42778f0fd467e1e590fa4a88",
+"index.html": "aef120678e6b571d79b7561d01b52e35",
+"/": "786fcea75f070005da59f28693f1a03e",
 "ios/Flutter/AppFrameworkInfo.plist": "a3fe1631377200e1c450eb0c7c59b011",
 "ios/Flutter/Debug.xcconfig": "e2f44c1946b223a1ce15cefc6ba9ad67",
 "ios/Flutter/flutter_export_environment.sh": "d092942f47f7d71692d7833a49b12db1",
@@ -90,7 +90,7 @@ const RESOURCES = {
 "ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist": "7e8ed88ea03cf8357fe1c73ae979f345",
 "ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings": "ecb41062214c654f65e47faa71e6b52e",
 "lib/main.dart": "d3ca21ba00468c1863143c63d4f13db2",
-"main.dart.js": "7fa5dfe2b413e31bfd2e24a51ae37e7c",
+"main.dart.js": "92cb157b9f2c401a7853d66ff4489803",
 "manifest.json": "d0bcb3c61b0ef05362e8d5f4a8ebbdd1",
 "pubspec.lock": "18804a14b67cfd7403f7a39198924f7f",
 "pubspec.yaml": "f2adbcca699a60059d27190211b83670",
@@ -100,7 +100,7 @@ const RESOURCES = {
 "web/favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "web/icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "web/icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"web/index.html": "567db35d42778f0fd467e1e590fa4a88",
+"web/index.html": "786fcea75f070005da59f28693f1a03e",
 "web/manifest.json": "413c4532dcafd9c5a1da281130bab0eb",
 "web.iml": "e0f10da35b9e41eee205c76b23f0f835"
 };
