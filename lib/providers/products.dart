@@ -108,6 +108,7 @@ class Products with ChangeNotifier {
           await http.delete("$_baseUrl/${product.id}.json?auth=$_token");
 
       if (response.statusCode >= 400) {
+        print(response.statusCode);
         _items.insert(index, product);
         notifyListeners();
         throw HttpException(
