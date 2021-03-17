@@ -25,7 +25,8 @@ class _AuthCardState extends State<AuthCard>
   };
 
   AnimationController _controller;
-  Animation<Size> _heightAnimation;
+  Animation<double> _opacityAnimation;
+  Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
@@ -37,9 +38,19 @@ class _AuthCardState extends State<AuthCard>
       ),
     );
 
-    _heightAnimation = Tween(
-      begin: Size(double.infinity, 330),
-      end: Size(double.infinity, 410),
+    _opacityAnimation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.linear,
+      ),
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: Offset(0, -1.5),
+      end: Offset(0, 0),
     ).animate(
       CurvedAnimation(
         parent: _controller,
@@ -165,21 +176,34 @@ class _AuthCardState extends State<AuthCard>
                   },
                   onSaved: (newValue) => _authData['password'] = newValue,
                 ),
-                if (_authMode == AuthMode.SignUp)
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: "Confirmar senha",
-                    ),
-                    obscureText: true,
-                    validator: _authMode == AuthMode.SignUp
-                        ? (value) {
-                            if (value != _passwordController.text) {
-                              return "Senhas são diferentes.";
-                            }
-                            return null;
-                          }
-                        : null,
+                AnimatedContainer(
+                  constraints: BoxConstraints(
+                    minHeight: _authMode == AuthMode.SignUp ? 60 : 0,
+                    maxHeight: _authMode == AuthMode.SignUp ? 120 : 0,
                   ),
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.linear,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: FadeTransition(
+                      opacity: _opacityAnimation,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Confirmar senha",
+                        ),
+                        obscureText: true,
+                        validator: _authMode == AuthMode.SignUp
+                            ? (value) {
+                                if (value != _passwordController.text) {
+                                  return "Senhas são diferentes.";
+                                }
+                                return null;
+                              }
+                            : null,
+                      ),
+                    ),
+                  ),
+                ),
                 Spacer(),
                 _isLoading
                     ? CircularProgressIndicator()

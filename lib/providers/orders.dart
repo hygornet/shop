@@ -34,7 +34,7 @@ class Orders with ChangeNotifier {
   Future<void> addOrder(Cart cart) async {
     final date = DateTime.now();
     final response = await http.post(
-      "$_baseUrl.json?auth=$_token",
+      "$_baseUrl/$_userId.json?auth=$_token",
       body: json.encode({
         'total': cart.totalAmount,
         'date': date.toIso8601String(),
@@ -67,7 +67,6 @@ class Orders with ChangeNotifier {
     final response = await http.get("$_baseUrl/$_userId.json?auth=$_token");
     Map<String, dynamic> data = json.decode(response.body);
 
-    _items.clear();
     if (data != null) {
       data.forEach((orderId, orderData) {
         _loadedItems.add(
