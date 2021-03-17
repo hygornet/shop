@@ -12,7 +12,8 @@ class AuthCard extends StatefulWidget {
   _AuthCardState createState() => _AuthCardState();
 }
 
-class _AuthCardState extends State<AuthCard> {
+class _AuthCardState extends State<AuthCard>
+    with SingleTickerProviderStateMixin {
   GlobalKey<FormState> _form = GlobalKey();
   bool _isLoading = false;
   AuthMode _authMode = AuthMode.Login;
@@ -22,6 +23,36 @@ class _AuthCardState extends State<AuthCard> {
     "email": '',
     "passowrd": '',
   };
+
+  AnimationController _controller;
+  Animation<Size> _heightAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(
+        milliseconds: 300,
+      ),
+    );
+
+    _heightAnimation = Tween(
+      begin: Size(double.infinity, 330),
+      end: Size(double.infinity, 410),
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.linear,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   void _showErrorDialog(String msg) {
     showDialog(
@@ -75,10 +106,12 @@ class _AuthCardState extends State<AuthCard> {
     if (_authMode == AuthMode.Login) {
       setState(() {
         _authMode = AuthMode.SignUp;
+        _controller.forward();
       });
     } else {
       setState(() {
         _authMode = AuthMode.Login;
+        _controller.reverse();
       });
     }
   }
@@ -93,7 +126,11 @@ class _AuthCardState extends State<AuthCard> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Container(
+        child: AnimatedContainer(
+          duration: Duration(
+            milliseconds: 300,
+          ),
+          curve: Curves.linear,
           width: deviceSize.width * 0.75,
           height: _authMode == AuthMode.Login ? 330 : 400,
           padding: EdgeInsets.all(16),
